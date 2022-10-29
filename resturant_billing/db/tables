@@ -1,0 +1,33 @@
+create database restaurant; 
+use restaurant;
+create table admin(
+    admin_id varchar(50) primary key,
+    admin_pwd varchar(50) not null
+); 
+insert into admin values('raj440', 'mysoft');
+select*from admin;  
+create table item(
+    item_no int auto_increment primary key,
+    item_name varchar(50) not null,
+    item_type varchar(20) not null,
+    item_price float
+);
+create table bill(
+    bill_no int auto_increment primary key,
+    bill_date date,
+    customer_name varchar(50),
+    customer_phone varchar(10),
+    total float,
+    cst_gst float,
+    final_total float
+);
+create table bill_details(
+    bill_no int references bill(bill_no) on delete cascade,
+    item_no int references item(item_no) on delete cascade,
+    qty int
+); 
+insert into item(item_name, item_type, item_price) values('Filter Coffee', 'Veg', 35),
+('Nescafe Hot',	'Veg', 55), ('Cold Coffee',	'Veg', 50), ('Masala Tea', 'Veg', 45),
+('Ginger Lemon Tea', 'Veg',	50), ('Egg Roll', 'Non-Veg', 80), ('Aloo Roll',	'Veg', 70),
+('Chicken Roll', 'Non-Veg',	120), ('Paneer Roll', 'Veg', 110), ('Chicken Pasta', 'Non-Veg', 120),
+('Cheese Pasta', 'Veg',	100), ('Medu Wada',	'Veg',	65), ('Coffee with ice cream', 'Veg', 70);
